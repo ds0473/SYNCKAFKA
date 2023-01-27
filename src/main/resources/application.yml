@@ -1,0 +1,22 @@
+kafka:
+  group:
+    id: account-result-group
+  reply:
+    topic: result
+  reuest:
+    topic: accountinfo
+server:
+  port: 9090
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
